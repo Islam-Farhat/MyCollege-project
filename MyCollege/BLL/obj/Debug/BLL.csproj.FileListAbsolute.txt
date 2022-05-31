@@ -1,0 +1,12 @@
+F:\Projects\MyCollege\BLL\bin\Debug\BLL.dll
+F:\Projects\MyCollege\BLL\bin\Debug\BLL.pdb
+F:\Projects\MyCollege\BLL\obj\Debug\BLL.csprojAssemblyReference.cache
+F:\Projects\MyCollege\BLL\obj\Debug\BLL.csproj.CoreCompileInputs.cache
+F:\Projects\MyCollege\BLL\obj\Debug\BLL.dll
+F:\Projects\MyCollege\BLL\obj\Debug\BLL.pdb
+E:\Projects\MyCollege\BLL\bin\Debug\BLL.dll
+E:\Projects\MyCollege\BLL\bin\Debug\BLL.pdb
+E:\Projects\MyCollege\BLL\obj\Debug\BLL.csproj.AssemblyReference.cache
+E:\Projects\MyCollege\BLL\obj\Debug\BLL.csproj.CoreCompileInputs.cache
+E:\Projects\MyCollege\BLL\obj\Debug\BLL.dll
+E:\Projects\MyCollege\BLL\obj\Debug\BLL.pdb

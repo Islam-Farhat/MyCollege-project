@@ -1,0 +1,612 @@
+﻿
+@{
+    ViewBag.Title = "RegisterSubject";
+}
+@{
+    Layout = null;
+}
+@{
+
+    int loginId = 0;
+    if (ViewBag.id != null)
+    {
+        loginId = ViewBag.id;
+    }
+}
+<!doctype html>
+<html lang="en">
+<head>
+    <title>Faculty</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700,800,900" rel="stylesheet">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/css/style.css">
+    <script src="~/Scripts/jquery-3.3.1.min.js"></script>
+    <link href="~/Progress_Bar.css" rel="stylesheet" />
+</head>
+<body>
+    <div>
+        <input type="hidden" value="@ViewBag.id" id="txthideid" />
+        <input type="hidden" id="hide" />
+        <input type="hidden" id="hidesubj" />
+    </div>
+    <div class="wrapper d-flex align-items-stretch">
+        <!--SideBar-->
+        <nav id="sidebar">
+            <div class="custom-menu">
+                <button type="button" id="sidebarCollapse" class="btn btn-primary">
+                    <i class="fa fa-bars"></i>
+                    <span class="sr-only">Toggle Menu</span>
+                </button>
+            </div>
+            <div class="p-4">
+                <h1><a href="index.html" class="logo">Portfolic <span>Portfolio Agency</span></a></h1>
+                <ul class="list-unstyled components mb-5">
+                    <li class="active">
+                        <a href="/Faculty/"><span class="fa fa-home mr-3"></span> Home</a>
+                    </li>
+                    <li>
+                        <a href="/Faculty/MySubject?id=@loginId"><span class="fa fa-user mr-3"></span> My Subject</a>
+                    </li>
+                    <li>
+                        <a href="#"><span class="fa fa-briefcase mr-3"></span> Conflicts</a>
+                    </li>
+                    <li>
+                        <a href="/Faculty/RegisterSubject?id=@loginId"><span class="fa fa-sticky-note mr-3"></span> Register Subject</a>
+                    </li>
+                    <li>
+                        <a href="#"><span class="fa fa-suitcase mr-3"></span> Gallery</a>
+                    </li>
+                    <li>
+                        <a href="#"><span class="fa fa-paper-plane mr-3"></span> Contacts</a>
+
+                    </li>
+                    <li>
+                        <a href="/Faculty/LogOut"><span class="fa fa-sign-out mr-3"></span> Log Out</a>
+                    </li>
+                </ul>
+
+                <div class="mb-5">
+                    <h3 class="h6 mb-3">Subscribe for newsletter</h3>
+                    <form action="#" class="subscribe-form">
+                        <div class="form-group d-flex">
+                            <div class="icon"><span class="icon-paper-plane"></span></div>
+                            <input type="text" class="form-control" placeholder="Enter Email Address">
+                        </div>
+                    </form>
+                </div>
+
+                <div class="footer">
+                    <p>
+                        <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+                        Copyright &copy;
+                        <script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i class="icon-heart" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib.com</a>
+                        <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+                    </p>
+                </div>
+
+            </div>
+        </nav>
+
+        <!-- Page Content  -->
+        <div id="content" class="p-4 p-md-5 pt-5">
+            <div id="aaaa">
+                <div>
+                    <div>
+                        <p style="font-family:Cambria;float:left"><strong style="color:#ff3300;font-size:200%;">S</strong><label style="color:#000080;font-size:200%">ubject</label></p>
+                        <div class="alert alert-success" style="float:right;width:92%">
+                            <strong>Success!</strong> My subject is added successfuly.
+                        </div>
+                    </div>
+
+                    <div class="alert alert-danger alert-dismissible" style="float:right;width:92%" id="alterdanger">
+                        <strong>Wrong!</strong> You skiped the limited hours.
+                    </div>
+                    <div class="alert alert-danger" style="float:right;width:92%" id="alerthours">
+                        <strong>Wrong!</strong> Your hours less than 10.
+                    </div>
+                    <div class="alert alert-danger" style="float:right;width:92%" id="alertconflict">
+                        <strong>Wrong!</strong>Your subject in the same time.
+                    </div>
+                    <table class="table table-hover" style="font-size:80%;" id="tbl">
+                        <thead style="background-color:#4d94ff;color:white;border:2px">
+                            <tr>
+                                <th>Subject</th>
+                                <th>Credit Hours</th>
+                                <th>Code</th>
+                                <th>Day</th>
+                                <th>From</th>
+                                <th>To</th>
+                                <th>Select</th>
+                            </tr>
+                        </thead>
+                        <tbody class="tbody"></tbody>
+                    </table>
+                </div>
+                <div>
+                    <table class="table table-hover" style="font-size:80%;" id="table">
+                        <thead style="background-color:#4d94ff;color:white;border:2px">
+                            <tr>
+
+                                <th>Subject</th>
+                                <th>Credit Hours</th>
+                                <th>Code</th>
+                                <th>Day</th>
+                                <th>From</th>
+                                <th>To</th>
+                                <th>Select</th>
+                            </tr>
+                        </thead>
+                        <tbody id="islam"></tbody>
+                    </table>
+                    <hr style="color:black;width:50%" />
+                </div>
+
+                <div id="btnandprogress">
+                    <div>
+                        <input class="form-control" type="button" id="btnsave" value="Save" style="margin-left:36%;width:100px;float:left;border:2px dashed #4d94ff" />
+                        <input class="form-control" type="button" id="btnclearall" value="Clear All" style="margin-right:33%;width:100px;float:right;border:2px dashed #4d94ff" />
+                    </div>
+                </div>
+                <div style="margin-top:60px;margin-left:43%;width:100px;" class="chart" id="graph" data-percent="1">
+                    <input type="hidden" id="numberprogress" /><input type="hidden" id="numberprogresssum" />
+                </div>
+            </div>
+
+
+            <div id="secondtable">
+                <div>
+                    <p style="font-family:Cambria;float:left"><strong style="color:#ff3300;font-size:200%;">M</strong><label style="color:#000080;font-size:200%">y</label><strong style="color:#ff3300;font-size:200%;"> S</strong><label style="color:#000080;font-size:200%">ubject</label></p>
+                </div>
+                <table class="table table-hover" style="font-size:80%;" id="o">
+                    <thead style="background-color:#4d94ff;color:white;border:2px">
+                        <tr>
+
+                            <th>Subject</th>
+                            <th>Credit Hours</th>
+                            <th>Code</th>
+                            <th>Day</th>
+                            <th>From</th>
+                            <th>To</th>
+                            <th>Select</th>
+                        </tr>
+                    </thead>
+                    <tbody id="ap"></tbody>
+                </table>
+                <hr style="color:black;width:50%" />
+            </div>
+        </div>
+
+    </div>
+
+    @*<script src="js/jquery.min.js"></script>*@
+    <script src="/js/popper.js"></script>
+    <script src="/js/bootstrap.min.js"></script>
+    <script src="/js/main.js"></script>
+    <script type="text/javascript">
+        window.history.forward(-1);
+    </script>
+</body>
+</html>
+
+<script>
+    $(document).ready(function () {
+        CloseRegister();
+        Subject();
+        progressbar();
+        loadataOldSubject();
+        $('#btnandprogress').hide();
+        $('#graph').hide();
+        $('#alterdanger').hide();
+        $('.alert-success').hide();
+        $('#alerthours').hide();
+        $('#alertconflict').hide();
+        $('#table thead tr').hide();
+        loadDataOldSubject();
+        $('#btnclearall').click(function () {
+            Clear();
+        })
+        $('#btnsave').click(function () {
+            RegisterSubject();
+            var check = $('#numberprogresssum').val();
+            if (check >= 10) {
+                $('.alert-success').slideDown(1000).delay(3000).slideUp();
+            }
+            
+        })
+    })
+    //Load Data function in Table
+    function Subject() {
+        var id = $('#txthideid').val();      
+        $.ajax({
+            url: "/Faculty/LoadDataSubject?id=" + id,
+            type: "GET",
+            contentType: "application/json;charset=utf-8",
+            dataType: "json",
+            success: function (result) {
+                var html = '';
+                $.each(result, function (key, item) {
+                    html += '<tr id="w' + item.id + '">';
+                    html += '<td id="7"style="display:none">' + item.id + '</td>';
+                    html += '<td id="1">' + item.subject1 + '</td>';
+                    html += '<td id="2">' + item.creditHours + '</td>';
+                    html += '<td id="3">' + item.code + '</td>';
+                    html += '<td id="4">' + item.day + '</td>';
+                    html += '<td id="5">' + item.fromTime + '</td>';
+                    html += '<td id="6">' + item.toTime + '</td>';
+                    html += '<td><a href="javascript:void(0);" onclick="ChangeSubject(' + item.id + ');" return false;' + '<i id="i" class="fa fa-check-circle" style="font-size:25px;color:#000080"></i></a>&nbsp;' + '</td>';
+                    html += '</tr>';
+                });
+                $('.tbody').html(html);
+            }
+        });
+    }
+
+    //Load Data function in Table
+    function loadDataOldSubject() {
+        var id = $('#txthideid').val();
+        $.ajax({
+            url: "/Faculty/LoadDataOldSubject?id=" + id,
+            type: "GET",
+            contentType: "application/json;charset=utf-8",
+            dataType: "json",
+            success: function (result) {
+                var html = '';
+                var i = 1;
+                $.each(result, function (key, item) {
+                    html += '<tr id="w' + item.id + '">';
+                    // html += '<td>' + i++ + '</td>';
+                    //alert(item.subjectId_FK)
+                    var s = item.id;
+                    $('#w' + s + '').hide();
+                    html += '<td id="7"style="display:none">' + item.id + '</td>';
+                    html += '<td id="">' + item.subject1 + '</td>';
+                    html += '<td id="10">' + item.creditHours + '</td>';
+                    html += '<td id="3">' + item.code + '</td>';
+                    html += '<td id="4">' + item.day + '</td>';
+                    html += '<td id="5">' + item.fromTime + '</td>';
+                    html += '<td id="6">' + item.toTime + '</td>';
+                    html += '<td><a href="javascript:void(0);"onclick="HideSubject(' + item.id + ');" return false;<i id="wrong" class="fa fa-window-close"style="font-size:20px;color:red"></i></a>&nbsp;</td>';
+                    html += '</tr>';
+                    if (item.creditHours != null) {
+                        $('#btnandprogress').show();
+                        $('#graph').show();
+                        $('#table thead tr').show();
+                        $("#numberprogress").val(item.creditHours);
+                        var oldprogress = Number($("#numberprogress").val());
+                        var newprogress = Number($("#numberprogresssum").val());
+                        var sumprogress = Number(oldprogress + newprogress);
+                        $("#numberprogresssum").val(sumprogress);
+                        progressbar(sumprogress);
+                    }
+                });
+                $('#islam').html(html);
+            }
+        });
+    }
+
+    //Rigister subject
+    function RegisterSubject() {
+        var check = $('#numberprogresssum').val();
+        if (check < 10) {
+            $('#alerthours').slideDown(1000).delay(3000).slideUp();
+        }
+        else {
+            var studentid = $('#txthideid').val();
+            $('#table tbody tr').each(function () {
+                var Id = $(this).find('#7').html();
+                $.ajax({
+                    url: "/Faculty/AddRegister?studentId_FK=" + studentid + "&subjectId_FK=" + Id,
+                    type: "POST",
+                    contentType: "application/json;charset=utf-8",
+                    dataType: "json",
+                    success: function (result) {
+                        if (result == "Success") {
+                            //alert("Row is Added Successfuly")
+                            // $('.alert-success').slideDown(4000).slideUp(2000);
+                        }
+                        else {
+                           // alert("Error in Save!")
+                        }
+                    }
+                });
+            });
+        }
+
+    }
+
+    //Hide row in first table and show it in the next
+    function ChangeSubject(stid) {
+        $('#hide').val(stid);
+        $('#btnandprogress').show();
+        $('#graph').show();
+        $('#table thead tr').show();
+        var table1 = $('#w' + stid + '');
+        var id = $('#hide').val();
+        var subject = table1.find("td:eq(1)").html();
+        var credit = table1.find("td:eq(2)").html();
+        var code = table1.find("td:eq(3)").html();
+        var day1 = table1.find("td:eq(4)").html();
+        var from1 = table1.find("td:eq(5)").html();
+        var to1 = table1.find("td:eq(6)").html();
+        var flag = true;
+        $('#table tbody tr').each(function () {
+            var table2 = $(this);
+            var day2 = table2.find("td:eq(4)").html();
+            var from2 = table2.find("td:eq(5)").html();
+            var to2 = table2.find("td:eq(6)").html();
+
+            if (day1 == day2) {
+                if ((from1 < from2 && from1 < to2 && to1 > from1) || (from1 > from2 && from1 < to2) || (from1 == from2)) {
+                    flag = false;
+                }
+            }
+        })
+        if (flag == false) {
+            $('#alertconflict').slideDown(1000).delay(3000).slideUp();
+        }
+        if (flag == true) {
+            $("#numberprogress").val(credit);
+            var oldprogress = Number($("#numberprogress").val());
+            var newprogress = Number($("#numberprogresssum").val());
+            var sumprogress = Number(oldprogress + newprogress);
+            if (sumprogress > 18) {
+
+                $('#alterdanger').slideDown(1000).delay(2000).slideUp();
+            }
+            else {
+                $("#numberprogresssum").val(sumprogress);
+                progressbar(sumprogress);
+                $('#table > tbody:last-child').append('<tr id="w' + id + '"><td style="display:none;" id="7">' + id + '</td><td id="9">' + subject + '</td><td id="10">' + credit + '</td><td id="11">' + code + '</td><td id="12">' + day1 + '</td><td id="13">' + from1 + '</td><td id="14">' + to1 + '</td><td><a href="javascript:void(0);"onclick="HideSubject(' + id + ');" return false;<i id="wrong" class="fa fa-window-close"style="font-size:20px;color:#ff3300"></i></a></td></tr>');
+                $('#tbl tr[id="w' + id + '"]').hide();
+
+            }
+        }
+
+    }
+
+    //Hide row in second table and show it in the first
+    function HideSubject(stid) {
+        $('#hidesubj').val(stid);
+        var id = $('#txthideid').val();
+        var check = true;
+        $.ajax({
+            url: "/Faculty/CheckSubject?subjectid=" + stid + "&studentid=" + id,
+            type: "POST",
+            contentType: "application/json;charset=utf-8",
+            dataType: "json",
+            success: function (result) {
+                if (result == true) {
+                    check = true;
+                }
+                else {
+                    check = false;
+                }
+            }
+        });
+        if (check == true) {
+            //var dlt = confirm("Are you sure.?! ");
+            //if (dlt) {
+            $.ajax({
+                url: "/Faculty/DeleteSubject?subjectid=" + stid + "&studentid=" + id,
+                type: "POST",
+                contentType: "application/json;charset=utf-8",
+                dataType: "json",
+                success: function (result) {
+                    if (result == true) {
+                        //alert(result)
+
+                        $('#table tbody tr').each(function () {
+                            var s = $('#hidesubj').val();
+                            var Id = $(this).find('#7').html();
+                            var creditHours = $(this).find('#10').text();
+                            if (Id == s) {
+                                $("#numberprogress").val(creditHours);
+                                var oldprogress = Number($("#numberprogress").val());
+                                var newprogress = Number($("#numberprogresssum").val());
+                                var sumprogress = Number(newprogress - oldprogress);
+                                $("#numberprogresssum").val(sumprogress);
+                                progressbar(sumprogress);
+                            }
+                            $('#table tr[id="w' + stid + '"]').remove();
+                            $('#tbl tr[id="w' + stid + '"]').show();
+                        });
+                    }
+                    else {
+                        //alert(result)
+
+                        $('#table tbody tr').each(function () {
+                            var s = $('#hidesubj').val();
+                            var Id = $(this).find('#7').html();
+                            var creditHours = $(this).find('#10').text();
+                            if (Id == s) {
+                                $("#numberprogress").val(creditHours);
+                                var oldprogress = Number($("#numberprogress").val());
+                                var newprogress = Number($("#numberprogresssum").val());
+                                var sumprogress = Number(newprogress - oldprogress);
+                                $("#numberprogresssum").val(sumprogress);
+                                progressbar(sumprogress);
+                            }
+                        });
+                        $('#table tr[id="w' + stid + '"]').remove();
+                        $('#tbl tr[id="w' + stid + '"]').show();
+                    }
+                }
+            });
+            // }
+        }
+        else {
+            $('#table tr[id="w' + stid + '"]').remove();
+            $('#tbl tr[id="w' + stid + '"]').show();
+            $('#table tbody tr').each(function () {
+                var s = $('#hidesubj').val();
+                var Id = $(this).find('#7').html();
+                var creditHours = $(this).find('#10').text();
+                if (Id == s) {
+                    $("#numberprogress").val(creditHours);
+                    var oldprogress = Number($("#numberprogress").val());
+                    var newprogress = Number($("#numberprogresssum").val());
+                    var sumprogress = Number(newprogress - oldprogress);
+                    $("#numberprogresssum").val(sumprogress);
+                    progressbar(sumprogress);
+                }
+            });
+        }
+        //else {
+        //    alert("cancle")
+        //    $('#table tr[id="w' + stid + '"]').remove();
+        //    $('#tbl tr[id="w' + stid + '"]').show();
+        //}
+
+
+    }
+
+    //Circle progressbar
+    function progressbar(x) {
+        $("span").empty();
+        var el = document.getElementById('graph'); // get canvas
+        var options = {
+            percent: x || 0,
+            size: el.getAttribute('data-size') || 220,
+            lineWidth: el.getAttribute('data-line') || 15,
+            rotate: el.getAttribute('data-rotate') || 0
+        }
+
+        var canvas = document.createElement('canvas');
+        var span = document.createElement('span');
+        span.textContent = options.percent + '%';
+
+        if (typeof (G_vmlCanvasManager) !== 'undefined') {
+            G_vmlCanvasManager.initElement(canvas);
+        }
+
+        var ctx = canvas.getContext('2d');
+        canvas.width = canvas.height = options.size;
+
+        var s = el.appendChild(span);
+        el.appendChild(canvas);
+
+        ctx.translate(options.size / 2, options.size / 2); // change center
+        ctx.rotate((-1 / 2 + options.rotate / 180) * Math.PI); // rotate -90 deg
+
+        //imd = ctx.getImageData(0, 0, 240, 240);
+        var radius = (options.size - options.lineWidth) / 2;
+
+        var drawCircle = function (color, lineWidth, percent) {
+            percent = Math.min(Math.max(0, percent || 1), 1);
+            ctx.beginPath();
+            ctx.arc(0, 0, radius, 0, Math.PI * 2 * percent, false);
+            ctx.strokeStyle = color;
+            ctx.lineCap = 'round'; // butt, round or square
+            ctx.lineWidth = lineWidth
+            ctx.stroke();
+        };
+        if (options.percent < 10) {
+            drawCircle('#efefef', options.lineWidth, 18 / 18);
+            drawCircle('#ff3300', options.lineWidth, options.percent / 18);
+        }
+        else if ((options.percent >= 10) && (options.percent < 18)) {
+            drawCircle('#efefef', options.lineWidth, 18 / 18);
+            drawCircle('#555555', options.lineWidth, options.percent / 18);
+        }
+        else if (options.percent = 18) {
+            drawCircle('#efefef', options.lineWidth, 18 / 18);
+            drawCircle('#00e600', options.lineWidth, options.percent / 18);
+        }
+
+    }
+
+    //Clear data from table
+    function Clear() {
+        $('#table thead tr').hide();
+        $('#table tbody tr').remove();
+        $('#tbl tbody tr').show();
+        var credithours = 0;
+        $("#numberprogresssum").val(credithours);
+        progressbar(credithours);
+        $('#btnandprogress').hide();
+        $('#graph').hide();
+    }
+
+
+
+    //Second Page------
+
+    //Close register
+    function CloseRegister() {
+        $.ajax({
+            url: "/Faculty/CloseRegister/",
+            type: "GET",
+            contentType: "application/json;charset=utf-8",
+            dataType: "json",
+            success: function (result) {
+                if (result == true) {
+                    $('#secondtable').hide();
+                }
+                else {
+                    //alert("close")
+                    $('#aaaa').hide();
+                    //window.location ="~/Views/Shared/Error.cshtml"
+                }
+            }
+        });
+    }
+
+    //Load Data function in Table
+    function loadataOldSubject() {
+        var id = $('#txthideid').val();
+
+
+        $.ajax({
+            url: "/Faculty/LoadDataOldSubject?id=" + id,
+            type: "GET",
+            contentType: "application/json;charset=utf-8",
+            dataType: "json",
+            success: function (result) {
+                var html = '';
+                var i = 1;
+                $.each(result, function (key, item) {
+                    html += '<tr id="w' + item.id + '">';
+                    // html += '<td>' + i++ + '</td>';
+                    //alert(item.subjectId_FK)
+                    var s = item.id;
+                    $('#w' + s + '').hide();
+                    html += '<td id="7"style="display:none">' + item.id + '</td>';
+                    html += '<td id="">' + item.subject1 + '</td>';
+                    html += '<td id="10">' + item.creditHours + '</td>';
+                    html += '<td id="3">' + item.code + '</td>';
+                    html += '<td id="4">' + item.day + '</td>';
+                    html += '<td id="5">' + item.fromTime + '</td>';
+                    html += '<td id="6">' + item.toTime + '</td>';
+                    html += '<td><a href="javascript:void(0);"onclick="Delete(' + item.id + ');" return false;<i id="wrong" class="fa fa-window-close"style="font-size:20px;color:red"></i></a>&nbsp;</td>';
+                    html += '</tr>';
+                    
+                });
+                $('#ap').html(html);
+            }
+        });
+    }
+
+    //Delete data in Table
+    function Delete(id) {
+       // $('#hidesubj').val(id);
+        var stid = $('#txthideid').val();
+        var dlt = confirm("Are you sure.?! ");
+        if (dlt) {
+            $.ajax({
+                url: "/Faculty/DeleteSubject?subjectid=" + id + "&studentid=" + stid,
+                type: "POST",
+                contentType: "application/json;charset=utf-8",
+                dataType: "json",
+                success: function (result) {
+
+                    loadataOldSubject();
+                }
+            });
+        }
+
+    }
+
+
+</script>

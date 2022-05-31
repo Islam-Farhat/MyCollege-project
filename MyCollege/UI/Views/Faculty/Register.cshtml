@@ -1,0 +1,387 @@
+﻿
+@{
+    ViewBag.Title = "Register";
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Login Template</title>
+    <link href="https://fonts.googleapis.com/css?family=Karla:400,700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.materialdesignicons.com/4.8.95/css/materialdesignicons.min.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/Ass/css/login.css">
+</head>
+<body>
+    <main class="d-flex align-items-center min-vh-100 py-3 py-md-0">
+        <div class="container">
+            <div class="card login-card">
+                <div class="row no-gutters">
+                    <div class="col-md-5">
+                        <img src="/Ass/images/graduation-messages-original.jpg" alt="login" class="login-card-img">
+                    </div>
+                    <div class="col-md-7">
+                        <div class="card-body">
+                            @*<div class="brand-wrapper">
+                                <img src="/Ass/images/logo.svg" alt="logo" class="logo">
+                            </div>*@
+                            <p class="login-card-description">Creat new account</p>
+                            <form action="#!">
+                                <div class="form-group">
+                                    <label for="email" class="sr-only">Email</label>
+                                    <input type="text" class="form-control" placeholder=" First Name" id="txtfirstnameregister">
+                                    <p style="color:#ff3300;margin-left:5%" id="firstnamevalid">First Name is Requried !</p>
+                                </div>
+                                <div class="form-group mb-4">
+                                    <label for="password" class="sr-only">Password</label>
+                                    <input type="text" class="form-control" placeholder="Middel Name" id="txtmiddelnameregister">
+                                    <p style="color:#ff3300;margin-left:5%" id="middelnamevalid">Middel Name is Requried !</p>
+                                </div>
+                                <div class="form-group">
+                                    <label for="email" class="sr-only">Email</label>
+                                    <input type="text" class="form-control" placeholder="Last Name" id="txtlastnameregister">
+                                    <p style="color:#ff3300;margin-left:5%" id="lastnamevalid">Last Name is Requried !</p>
+                                </div>
+                                <div class="form-group mb-4">
+                                    <label for="password" class="sr-only">Password</label>
+                                    <input type="text" class="form-control" placeholder="Email" id="txtsurnameregister">
+                                    <p style="color:#ff3300;margin-left:5%" id="surnamevalid">Sur Name is Requried !</p>
+                                </div>
+                                <div class="form-group">
+                                    <label for="email" class="sr-only">Email</label>
+                                    <input type="number" class="form-control" placeholder="National ID" id="txtnationalidregister">
+                                    <p style="color:#ff3300;margin-left:5%" id="Nationalidvalid">National ID is Requried !</p>
+                                    <p style="color:#ff3300;margin-left:5%" id="Nationalidnotvalid">National ID Invalid !</p>
+                                    <p style="color:#ff3300;margin-left:5%" id="Nationalidrebeat">National ID is too long !</p>
+                                </div>
+                                <div class="form-group mb-4">
+                                    <label for="password" class="sr-only">Password</label>
+                                    <input type="number" class="form-control" placeholder="Phone Number" id="txtmobileregister">
+                                    <p style="color:#ff3300;margin-left:5%" id="mobilevalid">Phone Number is Requried !</p>
+                                    <p style="color:#ff3300;margin-left:5%" id="mobilenotvalid">Phone Number Invalid !</p>
+                                    <p style="color:#ff3300;margin-left:5%" id="mobilerebeat">Phone Number is too long !</p>
+                                </div>
+                                <div class="form-group">
+                                    <label for="email" class="sr-only">Email</label>
+                                    <input type="file" id="txtuploadfile">
+                                    <p style="color:#ff3300;margin-left:5%" id="filevalid">File is Requried !</p>
+                                </div>
+                                <div class="form-group mb-4">
+                                    <label for="password" class="sr-only">Password</label>
+
+                                    <select class="form-control" id="ddllevelregister">
+                                        @*<option>Select Level</option>
+                                            <option>1</option>*@
+                                    </select>
+                                    <p style="color:#ff3300;margin-left:5%" id="levelnamevalid">Level Name is Requried !</p>
+                                </div>
+                                <div class="form-group">
+                                    <label for="email" class="sr-only">Email</label>
+                                    <select class="form-control" id="ddldepartmentregister">
+                                        @*<option>Select Department</option>
+                                            <option>1</option>*@
+                                    </select>
+                                    <p style="color:#ff3300;margin-left:5%" id="departmentnamevalid">Department Name is Requried !</p>
+                                </div>
+                                <div class="form-group mb-4">
+                                    <label for="password" class="sr-only">Password</label>
+                                    <div class="radio">
+                                        <p style="font-size:150%;color:#b3b3b3"id="0">Select Gender</p>
+
+                                        <div id="radioregister">
+
+                                            <label style="margin-right:70px;font-size:130%"><input type="radio" name="optradio" value="1">Male</label>
+                                            <label style="font-size:130%"><input type="radio" name="optradio" value="2"checked>Female</label>
+
+                                        </div>
+
+                                    </div>
+                                </div>
+                                <input id="btnregister" onclick="SendEmail()" class="btn btn-block login-btn mb-4" type="button" value="Register">
+                                
+                            </form>
+                            <p class="login-card-footer-text">I have account? <a href="/Faculty/Login" style="color:#ff3300">Sign in</a></p>
+                            @*<p class="login-card-footer-text">I have account? <a href="/Faculty/Login" style="color:#4d94ff">Sign in</a></p>*@
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+    
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+</body>
+</html>
+<script>
+    $(document).ready(function () {
+        DropdownlistLevel();
+        DropdownlistDepartment();
+        $('#firstnamevalid').hide();
+        $('#middelnamevalid').hide();
+        $('#lastnamevalid').hide();
+        $('#surnamevalid').hide();
+        $('#Nationalidvalid').hide();
+        $('#mobilevalid').hide();
+        $('#filevalid').hide();
+        $('#levelnamevalid').hide();
+        $('#departmentnamevalid').hide();
+        $('#Nationalidnotvalid').hide();
+        $('#mobilenotvalid').hide();
+        $('#Nationalidrebeat').hide();
+        $('#mobilerebeat').hide();
+        $('#btnregister').click(function () {
+            $('#firstnamevalid').hide();
+            $('#middelnamevalid').hide();
+            $('#lastnamevalid').hide();
+            $('#surnamevalid').hide();
+            $('#Nationalidvalid').hide();
+            $('#mobilevalid').hide();
+            $('#filevalid').hide();
+            $('#levelnamevalid').hide();
+            $('#departmentnamevalid').hide();
+            $('#Nationalidnotvalid').hide();
+            $('#mobilenotvalid').hide();
+            $('#Nationalidrebeat').hide();
+            $('#mobilerebeat').hide();
+            AddnewStudent();
+            Uploadfile();
+        })
+    })
+
+    var SendEmail = function () {
+        $.ajax({
+            url: "/Faculty/EmailUser",
+            type: "GET",
+            success: function (result) {
+                alert("success")
+            }
+        });
+    }
+
+    //loadData in dropdownlist in page Register
+    function DropdownlistLevel() {
+        $.ajax({
+            url: "/Faculty/DropdownlistLevel",
+            type: "GET",
+            contentType: "application/json;charset=utf-8",
+            dataType: "json",
+            success: function (result) {
+                var html = '';
+                html += '<option value=-1>Select Level</option>'
+                $.each(result, function (key, item) {
+                    html += '<option value=' + item.id + '>';
+                    html += item.level1 + '</option>';
+                });
+                $('#ddllevelregister').html(html);
+            }
+        });
+    }
+
+    //loadData in dropdownlist in page Register
+    function DropdownlistDepartment() {
+        $.ajax({
+            url: "/Faculty/DropdownlistDepartment",
+            type: "GET",
+            contentType: "application/json;charset=utf-8",
+            dataType: "json",
+            success: function (result) {
+                var html = '';
+                html += '<option value=-1>Select Department</option>'
+                $.each(result, function (key, item) {
+                    html += '<option value=' + item.id + '>';
+                    html += item.department1 + '</option>';
+                });
+                $('#ddldepartmentregister').html(html);
+            }
+        });
+    }
+
+    //upload file in register page
+    function Uploadfile() {
+        if (window.FormData == undefined)
+            alert("Error: FormData is undefined");
+
+        else {
+            var fileUpload = $("#txtuploadfile").get(0);
+            var files = fileUpload.files;
+
+            var fileData = new FormData();
+
+            fileData.append(files[0].name, files[0]);
+
+            $.ajax({
+                url: '/Faculty/uploadFile',
+                type: 'post',
+                datatype: 'json',
+                contentType: false,
+                processData: false,
+                async: false,
+                data: fileData,
+                success: function (response) {
+                    //alert(response);
+                }
+            });
+        }
+
+    }
+
+    //Save data in Table
+    function AddnewStudent() {
+        var valididentity1, valididentity2, validemail1, validemail2,vfirst,vmiddel,vlast,vsur,vimg,vlevel,vdept;
+        var first = $('#txtfirstnameregister').val();
+        var middel = $('#txtmiddelnameregister').val();
+        var last = $('#txtlastnameregister').val();
+        var sur = $('#txtsurnameregister').val();
+        var nationalid = $('#txtnationalidregister').val();
+        var mobile = $('#txtmobileregister').val();
+        var image = $('#txtuploadfile').val();
+        var level = $('#ddllevelregister').val();
+        var department = $('#ddldepartmentregister').val();
+        var gender = $('input[name="optradio"]:checked').val();
+        if (first == "" || first == undefined) {
+            vfirst = false
+        }
+        else { vfirst = true }
+        if (middel == "" || middel == undefined) {
+            vmiddel = false
+        }
+        else { vmiddel = true }
+        if (last == "" || last == undefined) {
+            vlast = false
+        }
+        else { vlast = true }
+        if (sur == "" || sur == undefined) {
+            vsur = false
+        }
+        else { vsur = true }
+        //National ID
+        if (nationalid == "" || nationalid == undefined) {
+            //$('#Nationalidvalid').show();
+            valididentity1 = false;
+        }
+        else {
+            valididentity1 = true
+            // var fatheridentity = $('#txtfatheridentity').val();
+            $.ajax({
+                url: "/Faculty/ValidNationalID?national=" + nationalid,
+                type: "GET",
+                contentType: "application/json;charset=utf-8",
+                dataType: "json",
+                success: function (result) {
+                    if (result == "Success") {
+                        valididentity2 = true;
+                        $('#Nationalidvalid').hide();
+                    }
+                    else {
+                        valididentity2 = false;
+                        $('#Nationalidnotvalid').slideDown(500);
+                    }
+                }
+            });
+        }
+        //Mobile Phone
+        if (mobile == "" || mobile == undefined) {
+            //$('#Nationalidvalid').show();
+            validemail1 = false;
+        }
+        else {
+            validemail1 = true
+            // var fatheridentity = $('#txtfatheridentity').val();
+            $.ajax({
+                url: "/Faculty/ValidMobile?mobile=" + mobile,
+                type: "GET",
+                contentType: "application/json;charset=utf-8",
+                dataType: "json",
+                success: function (result) {
+                    if (result == "Success") {
+                        ///debugger;
+                        validemail2 = true;
+                        $('#mobilevalid').hide();
+                    }
+                    else {
+                        //debugger;
+                        validemail2 = false;
+                        $('#mobilenotvalid').slideDown(500);
+                    }
+                }
+            });
+        }
+
+        if (image == "" || image == undefined) {
+            vimg = false
+        }
+        else { vimg = true }
+        if (level == -1 || level == undefined) {
+            vlevel = false
+        }
+        else { vlevel = true }
+        if (department == -1 || department == undefined) {
+            vdept = false
+        }
+        else { vdept = true }
+
+        if (vfirst == false) {
+            $('#firstnamevalid').show();
+        }
+         if (vmiddel == false) {
+            $('#middelnamevalid').show();
+        }
+        if (vlast == false) {
+            $('#lastnamevalid').show();
+        }
+         if (vsur == false) {
+            $('#surnamevalid').show();
+        }
+
+         if (valididentity1 == false) {
+            $('#Nationalidvalid').show();
+        }
+         if (nationalid.length > 15) {
+            $('#Nationalidrebeat').show();
+        }
+         if (mobile == false) {
+            $('#mobilevalid').show();
+        }
+         if (mobile.length > 13) {
+            $('#mobilerebeat').show();
+        }
+         if (vimg == false) {
+            $('#filevalid').show();
+        }
+         if (vlevel == false) {
+            $('#levelnamevalid').show();
+        }
+         if (vdept == false) {
+            $('#departmentnamevalid').show();
+        }
+        //debugger;
+        else if (vfirst == true && vmiddel == true && vlast == true && vsur == true && valididentity1 == true /*&& valididentity2 == true*/ && validemail1 == true /*&& validemail2 == true */&& vimg == true && vlevel == true && vdept == true) {
+            $.ajax({
+                url: "/Faculty/AddNewStudent?firstName=" + first + "&middleName=" + middel + "&lastName=" + last + "&surName=" + sur + "&nationalId=" + nationalid + "&mobile=" + mobile + "&image=" + image + "&levelId_Fk=" + level + "&deptId_FK=" + department + "&genderId_FK=" + gender,
+                type: "POST",
+                contentType: "application/json;charset=utf-8",
+                dataType: "json",
+                success: function (result) {
+                    if (result == "Success") {
+
+                        //alert("Successfully Register")
+                        window.location = "/Faculty/";
+                    }
+                    else {
+                       // $('#Nationalidnotvalid').slideDown(500);
+                       // alert("Error in Save")
+                    }
+
+                }
+            });
+        }
+    }
+
+    
+</script>
+

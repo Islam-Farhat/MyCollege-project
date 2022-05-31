@@ -1,0 +1,191 @@
+﻿@{ 
+    Layout = null;
+}
+<!doctype html>
+<html lang="en">
+<head>
+    <title>My Subject</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <link href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700,800,900" rel="stylesheet">
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/css/style.css">
+    <script src="~/Scripts/jquery-3.3.1.min.js"></script>
+    <link href="~/Progress_Bar.css" rel="stylesheet" />
+</head>
+<body>
+    <div>
+        <input type="hidden" id="hide" />
+        <input type="hidden" id="hidesubj" />
+    </div>
+    <div class="wrapper d-flex align-items-stretch">
+
+        @Html.Partial("_Sidebar")
+
+        <!-- Page Content  -->
+        <div id="content" class="p-4 p-md-5 pt-5">
+            <div>
+                <table class="table table-hover" style="font-size:80%;" id="tbl">
+                    <thead style="background-color:#b30000;color:white;border:2px">
+                        <tr>
+                            <th>#</th>
+                            <th>Subject</th>
+                            <th>Credit Hours</th>
+                            <th>Code</th>
+                            <th>Day</th>
+                            <th>From</th>
+                            <th>To</th>
+                            <th>Select</th>
+                        </tr>
+                    </thead>
+                    <tbody class="tbloldsubject"></tbody>
+                </table>
+            </div>
+            <div style="margin-top:60px;margin-left:40%;width:100px;" class="chart" id="graph" data-percent="1">
+                <input type="hidden" id="onlynumber" /><input type="hidden" id="numberssum" />
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>
+
+<script>
+    $(document).ready(function () {
+        loadDataOldSubject();
+        progressbar();
+    })
+
+
+    //Load Data function in Table
+    function loadDataOldSubject() {
+        var id = $('#txthideid').val();
+        $.ajax({
+            url: "/Faculty/LoadDataOldSubject?id=" + id,
+            type: "GET",
+            contentType: "application/json;charset=utf-8",
+            dataType: "json",
+            success: function (result) {
+                var html = '';
+                var i = 1;
+                $.each(result, function (key, item) {
+                    html += '<tr id="' + item.id + '">';
+                    html += '<td>' + i++ + '</td>';
+                    html += '<td id="q"style="display:none">' + item.id + '</td>';
+                    html += '<td id="w">' + item.subject1 + '</td>';
+                    html += '<td id="e">' + item.creditHours + '</td>';
+                    html += '<td id="3">' + item.code + '</td>';
+                    html += '<td id="4">' + item.day + '</td>';
+                    html += '<td id="5">' + item.fromTime + '</td>';
+                    html += '<td id="6">' + item.toTime + '</td>';
+                    html += '<td><a href="javascript:void(0);"onclick="Delete(' + item.id + ');" return false;<i id="wrong" class="fa fa-window-close"style="font-size:20px;color:red"></i></a>&nbsp;</td>';
+                    html += '</tr>';
+                    if (item.creditHours != null)
+                    {
+                        $("#onlynumber").val(item.creditHours);
+                        var oldprogress = Number($("#onlynumber").val());
+                        var newprogress = Number($("#numberssum").val());
+                        var sumprogress = Number(oldprogress + newprogress);
+                        $("#numberssum").val(sumprogress);
+                        progressbar(sumprogress);
+                    }
+                });
+                $('.tbloldsubject').html(html);
+            }
+        });
+    }
+
+    //Hide row in second table and show it in the first
+    function HideSubject(stid) {
+        $('#hidesubj').val(stid);
+        $("#tbl").delegate("#wrong", "click", function () {
+            $(this).closest("tr").remove();
+        });
+        $('#tbl tbody tr').each(function () {
+            var s = $('#hidesubj').val();
+            var Id = $(this).find('#q').html();
+            var creditHours = $(this).find('#e').text();
+            if (Id == s) {
+
+                $("#onlynumber").val(creditHours);
+                var oldprogress = Number($("#onlynumber").val());
+                alert(oldprogress)
+                var newprogress = Number($("#numberssum").val());
+                alert(sumprogress)
+                var sumprogress = Number(newprogress - oldprogress);
+                $("#numberssum").val(sumprogress);
+                progressbar(sumprogress);
+            }
+        });
+    }
+
+    //Delete data in Table
+    function Delete(subjectid) {
+        var studentid = $('#txthideid').val();
+        $('#hidesubj').val(subjectid);
+        var dlt = confirm("Are you sure.?! ");
+        if (dlt) {
+            $.ajax({
+                url: "/Faculty/DeleteSubject?subjectid=" + subjectid + "&studentid=" + studentid,
+                type: "POST",
+                contentType: "application/json;charset=utf-8",
+                dataType: "json",
+                success: function (result) {
+                    $("#numberssum").val(0);
+                    progressbar(0);
+                    loadDataOldSubject();
+                }
+            });
+        }
+       
+    }
+
+    //Circle progressbar
+    function progressbar(x) {
+        $("span").empty();
+        var el = document.getElementById('graph'); // get canvas
+
+        var options = {
+            percent: x || 0,
+            size: el.getAttribute('data-size') || 220,
+            lineWidth: el.getAttribute('data-line') || 15,
+            rotate: el.getAttribute('data-rotate') || 0
+        }
+
+        var canvas = document.createElement('canvas');
+        var span = document.createElement('span');
+        span.textContent = options.percent + '%';
+
+        if (typeof (G_vmlCanvasManager) !== 'undefined') {
+            G_vmlCanvasManager.initElement(canvas);
+        }
+
+        var ctx = canvas.getContext('2d');
+        canvas.width = canvas.height = options.size;
+
+        var s = el.appendChild(span);
+        el.appendChild(canvas);
+
+        ctx.translate(options.size / 2, options.size / 2); // change center
+        ctx.rotate((-1 / 2 + options.rotate / 180) * Math.PI); // rotate -90 deg
+
+        //imd = ctx.getImageData(0, 0, 240, 240);
+        var radius = (options.size - options.lineWidth) / 2;
+
+        var drawCircle = function (color, lineWidth, percent) {
+            percent = Math.min(Math.max(0, percent || 1), 1);
+            ctx.beginPath();
+            ctx.arc(0, 0, radius, 0, Math.PI * 2 * percent, false);
+            ctx.strokeStyle = color;
+            ctx.lineCap = 'round'; // butt, round or square
+            ctx.lineWidth = lineWidth
+            ctx.stroke();
+        };
+
+        drawCircle('#efefef', options.lineWidth, 18 / 18);
+        drawCircle('#555555', options.lineWidth, options.percent / 18);
+    }
+
+</script>

@@ -1,0 +1,105 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="MyCollegeModelStoreContainer" CdmEntityContainer="MyCollegeEntities">
+    <EntitySetMapping Name="CloseRegisters">
+      <EntityTypeMapping TypeName="MyCollegeModel.CloseRegister">
+        <MappingFragment StoreEntitySet="CloseRegister">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="close" ColumnName="close" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Departments">
+      <EntityTypeMapping TypeName="MyCollegeModel.Department">
+        <MappingFragment StoreEntitySet="Departments">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="department1" ColumnName="department" />
+          <ScalarProperty Name="headId_FK" ColumnName="headId_FK" />
+          <ScalarProperty Name="isActive" ColumnName="isActive" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Genders">
+      <EntityTypeMapping TypeName="MyCollegeModel.Gender">
+        <MappingFragment StoreEntitySet="Gender">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="gender1" ColumnName="gender" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Levels">
+      <EntityTypeMapping TypeName="MyCollegeModel.Level">
+        <MappingFragment StoreEntitySet="Levels">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="level1" ColumnName="level" />
+          <ScalarProperty Name="isActive" ColumnName="isActive" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Professor_Subjects">
+      <EntityTypeMapping TypeName="MyCollegeModel.Professor_Subject">
+        <MappingFragment StoreEntitySet="Professor Subjects">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="professorId_FK" ColumnName="professorId_FK" />
+          <ScalarProperty Name="subjectId_FK" ColumnName="subjectId_FK" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Professors">
+      <EntityTypeMapping TypeName="MyCollegeModel.Professor">
+        <MappingFragment StoreEntitySet="Professors">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="image" ColumnName="image" />
+          <ScalarProperty Name="genderId_FK" ColumnName="genderId_FK" />
+          <ScalarProperty Name="isActive" ColumnName="isActive" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Student_Subjects">
+      <EntityTypeMapping TypeName="MyCollegeModel.Student_Subject">
+        <MappingFragment StoreEntitySet="Student Subjects">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="studentId_FK" ColumnName="studentId_FK" />
+          <ScalarProperty Name="subjectId_FK" ColumnName="subjectId_FK" />
+          <ScalarProperty Name="isPassed" ColumnName="isPassed" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Students">
+      <EntityTypeMapping TypeName="MyCollegeModel.Student">
+        <MappingFragment StoreEntitySet="Students">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="levelId_Fk" ColumnName="levelId_Fk" />
+          <ScalarProperty Name="nationalId" ColumnName="nationalId" />
+          <ScalarProperty Name="mobile" ColumnName="mobile" />
+          <ScalarProperty Name="password" ColumnName="password" />
+          <ScalarProperty Name="firstName" ColumnName="firstName" />
+          <ScalarProperty Name="middleName" ColumnName="middleName" />
+          <ScalarProperty Name="lastName" ColumnName="lastName" />
+          <ScalarProperty Name="surName" ColumnName="surName" />
+          <ScalarProperty Name="deptId_FK" ColumnName="deptId_FK" />
+          <ScalarProperty Name="genderId_FK" ColumnName="genderId_FK" />
+          <ScalarProperty Name="image" ColumnName="image" />
+          <ScalarProperty Name="isActive" ColumnName="isActive" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Subjects">
+      <EntityTypeMapping TypeName="MyCollegeModel.Subject">
+        <MappingFragment StoreEntitySet="Subjects">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="subject1" ColumnName="subject" />
+          <ScalarProperty Name="creditHours" ColumnName="creditHours" />
+          <ScalarProperty Name="code" ColumnName="code" />
+          <ScalarProperty Name="isActive" ColumnName="isActive" />
+          <ScalarProperty Name="deptId_FK" ColumnName="deptId_FK" />
+          <ScalarProperty Name="preSubjectId_FK" ColumnName="preSubjectId_FK" />
+          <ScalarProperty Name="day" ColumnName="day" />
+          <ScalarProperty Name="fromTime" ColumnName="fromTime" />
+          <ScalarProperty Name="toTime" ColumnName="toTime" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

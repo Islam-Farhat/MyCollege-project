@@ -1,0 +1,43 @@
+﻿.chart {
+    position: relative;
+    margin: 80px;
+    width: 120px;
+    height: 120px;
+}
+
+canvas {
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+#graph span {
+    color: black;
+    display: block;
+    line-height: 220px;
+    text-align: center;
+    width: 220px;
+    font-family: sans-serif;
+    font-size: 40px;
+    font-weight: 100;
+    margin-left: 5px;
+}
+
+/*table {
+    width: 30%;
+}
+
+th {
+    height: 50px;
+}
+
+tr:hover {
+    background-color: #5969ca;
+}
+
+td:hover {
+    background-color: #5969ca;
+}*/
+
+
